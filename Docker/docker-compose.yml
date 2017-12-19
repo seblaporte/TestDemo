@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=P@ssw0rd!!
+      - MYSQL_USER=springboot
+      - MYSQL_PASSWORD=P@ssw0rd!
+      - MYSQL_DATABASE=tests_demo
+    volumes:
+      - ./data:/var/lib/mysql
