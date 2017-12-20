@@ -8,7 +8,7 @@ import org.junit.Test;
 import fr.apside.demo.domain.datagouv.Properties;
 import fr.apside.demo.domain.datagouv.SearchResponse;
 
-public class AddressDataGouvRepositoryTest {
+public class AddressDataGouvRepositoryTestIt {
 
 	@Test
 	public void it_should_return_address() {
@@ -26,4 +26,5 @@ public class AddressDataGouvRepositoryTest {
 		assertEquals("37700", properties.getPostcode());
 		assertEquals("Saint-Pierre-des-Corps", properties.getCity());
 	}
+	
 }
