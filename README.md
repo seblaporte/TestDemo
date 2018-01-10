@@ -1,4 +1,5 @@
-# TestsDemo
+# Apside Camp Meetup Demo
+https://github.com/citrouille86/ac_meetup_tests
 
 > Ce projet Spring Boot a pour objectif de rassembler un ensemble de bonnes pratiques sur les tests mais également sur celles du framework.
 
