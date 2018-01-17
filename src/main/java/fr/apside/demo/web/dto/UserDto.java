@@ -2,54 +2,54 @@ package fr.apside.demo.web.dto;
 
 public class UserDto {
 
-	private Integer id;
+    private Integer id;
 
-	private String name;
+    private String name;
 
-	private String surename;
+    private String surname;
 
-	private String email;
+    private String email;
 
-	private AddressDto address;
+    private AddressDto address;
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
 
-	public String getSurename() {
-		return surename;
-	}
+    public String getSurname() {
+	return surname;
+    }
 
-	public void setSurename(String surename) {
-		this.surename = surename;
-	}
+    public void setSurname(String surname) {
+	this.surname = surname;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+	return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+	this.email = email;
+    }
 
-	public AddressDto getAddress() {
-		return address;
-	}
+    public AddressDto getAddress() {
+	return address;
+    }
 
-	public void setAddress(AddressDto address) {
-		this.address = address;
-	}
+    public void setAddress(AddressDto address) {
+	this.address = address;
+    }
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+	return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+	this.id = id;
+    }
 
 }

@@ -9,60 +9,60 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Address {
 
-	@Id
+    @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
-	
-	@NotNull
-	private String city;
-	
-	@NotNull
-	private String street;
-	
-	@NotNull
-	private String number;
-	
-	@NotNull
-	private String postcode;
 
-	public Integer getId() {
-		return id;
-	}
+    @NotNull(message = "La ville est obligatoire")
+    private String city;
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    @NotNull(message = "La rue est obligatoire")
+    private String street;
 
-	public String getCity() {
-		return city;
-	}
+    @NotNull(message = "Le numéro de voie est obligatoire")
+    private String number;
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+    @NotNull(message = "Le code postal est obligatoire")
+    private String postcode;
 
-	public String getStreet() {
-		return street;
-	}
+    public Integer getId() {
+	return id;
+    }
 
-	public void setStreet(String street) {
-		this.street = street;
-	}
+    public void setId(Integer id) {
+	this.id = id;
+    }
 
-	public String getNumber() {
-		return number;
-	}
+    public String getCity() {
+	return city;
+    }
 
-	public void setNumber(String number) {
-		this.number = number;
-	}
+    public void setCity(String city) {
+	this.city = city;
+    }
 
-	public String getPostcode() {
-		return postcode;
-	}
+    public String getStreet() {
+	return street;
+    }
 
-	public void setPostcode(String postcode) {
-		this.postcode = postcode;
-	}
-	
+    public void setStreet(String street) {
+	this.street = street;
+    }
+
+    public String getNumber() {
+	return number;
+    }
+
+    public void setNumber(String number) {
+	this.number = number;
+    }
+
+    public String getPostcode() {
+	return postcode;
+    }
+
+    public void setPostcode(String postcode) {
+	this.postcode = postcode;
+    }
+
 }

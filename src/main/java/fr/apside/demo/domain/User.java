@@ -13,62 +13,62 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 public class User {
 
-	@Id
+    @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Integer id;
 
-	@NotNull(message = "Le nom est obligatoire")
+    @NotNull(message = "Le nom est obligatoire")
     private String name;
-    
-    private String surename;
+
+    private String surname;
 
     @NotNull(message = "L'adresse email est obligatoire")
     @Email(message = "Invalid Email")
     @Column(unique = true)
     private String email;
-    
+
     @NotNull(message = "Une adresse postale est requise")
     @ManyToOne
     private Address address;
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+	return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+	this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+	return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+	this.name = name;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+	return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+	this.email = email;
+    }
 
-	public String getSurename() {
-		return surename;
-	}
+    public String getSurname() {
+	return surname;
+    }
 
-	public void setSurename(String surename) {
-		this.surename = surename;
-	}
+    public void setSurname(String surname) {
+	this.surname = surname;
+    }
 
-	public Address getAddress() {
-		return address;
-	}
+    public Address getAddress() {
+	return address;
+    }
 
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-    
+    public void setAddress(Address address) {
+	this.address = address;
+    }
+
 }

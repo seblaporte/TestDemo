@@ -22,31 +22,31 @@ import fr.apside.demo.web.dto.UserDto;
 @RequestMapping("/user")
 public class UserResource {
 
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
-	@RequestMapping(method = RequestMethod.GET, value = "/{userId}")
-	public UserDto getUserById(@PathVariable Integer userId) {
+    @Autowired
+    private UserService userService;
 
-		User user = userRepository.findOne(userId);
+    @RequestMapping(method = RequestMethod.GET, value = "/{userId}")
+    public UserDto getUserById(@PathVariable Integer userId) {
 
-		return UserMapper.instance.userToUserDto(user);
-	}
+	User user = userRepository.findOne(userId);
 
-	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<?> createUser(@RequestBody UserDto userDto) throws UserAlreadyExistsException {
+	return UserMapper.instance.userToUserDto(user);
+    }
 
-		User createdUser = userService.createUserIfNotExists(userDto);
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) throws UserAlreadyExistsException {
 
-		URI location = ServletUriComponentsBuilder
-				.fromCurrentRequest()
-				.path("/{id}")
-				.buildAndExpand(createdUser.getId())
-				.toUri();
+	User createdUser = userService.createUserIfNotExists(userDto);
 
-		return ResponseEntity.created(location).build();
-	}
+	URI location = ServletUriComponentsBuilder
+		.fromCurrentRequest()
+		.path("/{id}")
+		.buildAndExpand(createdUser.getId())
+		.toUri();
+
+	return ResponseEntity.created(location).build();
+    }
 }
