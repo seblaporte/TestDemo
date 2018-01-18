@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import fr.apside.demo.domain.Address;
 import fr.apside.demo.domain.User;
+import fr.apside.demo.exception.NoAddressRetrievedException;
 import fr.apside.demo.exception.UserAlreadyExistsException;
 import fr.apside.demo.mapper.UserMapper;
 import fr.apside.demo.repository.UserRepository;
@@ -26,8 +27,9 @@ public class UserService {
 	 * @param userDto
 	 * @return User with id from repository
 	 * @throws UserAlreadyExistsException if user already exists
+	 * @throws NoAddressRetrievedException 
 	 */
-	public User createUserIfNotExists(UserDto userDto) throws UserAlreadyExistsException {
+	public User createUserIfNotExists(UserDto userDto) throws UserAlreadyExistsException, NoAddressRetrievedException {
 		
 		User user = UserMapper.instance.userDtoToUser(userDto);
 

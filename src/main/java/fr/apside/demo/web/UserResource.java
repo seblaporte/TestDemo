@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import fr.apside.demo.domain.User;
+import fr.apside.demo.exception.NoAddressRetrievedException;
 import fr.apside.demo.exception.UserAlreadyExistsException;
 import fr.apside.demo.mapper.UserMapper;
 import fr.apside.demo.repository.UserRepository;
@@ -37,7 +38,8 @@ public class UserResource {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<?> createUser(@RequestBody UserDto userDto) throws UserAlreadyExistsException {
+    public ResponseEntity<?> createUser(@RequestBody UserDto userDto)
+	    throws UserAlreadyExistsException, NoAddressRetrievedException {
 
 	User createdUser = userService.createUserIfNotExists(userDto);
 
