@@ -5,14 +5,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Feature {
 
-	private Properties properties;
+    private Properties properties;
 
-	public Properties getProperties() {
-		return properties;
-	}
+    public Properties getProperties() {
+        return properties;
+    }
 
-	public void setProperties(Properties properties) {
-		this.properties = properties;
-	}
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
 
 }

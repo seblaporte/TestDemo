@@ -13,43 +13,43 @@ public class UserDto {
     private AddressDto address;
 
     public String getName() {
-	return name;
+        return name;
     }
 
     public void setName(String name) {
-	this.name = name;
+        this.name = name;
     }
 
     public String getSurname() {
-	return surname;
+        return surname;
     }
 
     public void setSurname(String surname) {
-	this.surname = surname;
+        this.surname = surname;
     }
 
     public String getEmail() {
-	return email;
+        return email;
     }
 
     public void setEmail(String email) {
-	this.email = email;
+        this.email = email;
     }
 
     public AddressDto getAddress() {
-	return address;
+        return address;
     }
 
     public void setAddress(AddressDto address) {
-	this.address = address;
+        this.address = address;
     }
 
     public Integer getId() {
-	return id;
+        return id;
     }
 
     public void setId(Integer id) {
-	this.id = id;
+        this.id = id;
     }
 
 }

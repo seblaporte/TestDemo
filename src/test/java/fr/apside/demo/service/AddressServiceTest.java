@@ -37,77 +37,81 @@ public class AddressServiceTest {
     @Before
     public void init() {
 
-	addressExample = new Address();
-	addressExample.setNumber("2");
-	addressExample.setStreet("Place de la Gare");
-	addressExample.setPostcode("37700");
-	addressExample.setCity("Saint-Pierre-des-Corps");
+        addressExample = new Address();
+        addressExample.setNumber("2");
+        addressExample.setStreet("Place de la Gare");
+        addressExample.setPostcode("37700");
+        addressExample.setCity("Saint-Pierre-des-Corps");
 
-	searchAddress = String.format("%s %s %s %s",
-		addressExample.getNumber(),
-		addressExample.getStreet(),
-		addressExample.getPostcode(),
-		addressExample.getCity());
+        searchAddress = String.format(
+                "%s %s %s %s",
+                addressExample.getNumber(),
+                addressExample.getStreet(),
+                addressExample.getPostcode(),
+                addressExample.getCity());
     }
 
     @Test
     public void it_should_return_created_address() throws NoAddressRetrievedException {
 
-	when(addressRepository.findByNumberAndStreetAndPostcodeAndCity(
-		addressExample.getNumber(),
-		addressExample.getStreet(),
-		addressExample.getPostcode(),
-		addressExample.getCity())).thenReturn(null);
-	when(addressDataGouvService.searchAddress(searchAddress)).thenReturn(addressExample);
-	addressExample.setId(1);
-	when(addressRepository.save(addressExample)).thenReturn(addressExample);
+        when(
+                addressRepository.findByNumberAndStreetAndPostcodeAndCity(
+                        addressExample.getNumber(),
+                        addressExample.getStreet(),
+                        addressExample.getPostcode(),
+                        addressExample.getCity())).thenReturn(null);
+        when(addressDataGouvService.searchAddress(searchAddress)).thenReturn(addressExample);
+        addressExample.setId(1);
+        when(addressRepository.save(addressExample)).thenReturn(addressExample);
 
-	Address result = addressService.createAddressIfNotExists(addressExample);
+        Address result = addressService.createAddressIfNotExists(addressExample);
 
-	assertEquals((Integer) 1, result.getId());
-	assertEquals("2", result.getNumber());
-	assertEquals("Place de la Gare", result.getStreet());
-	assertEquals("37700", result.getPostcode());
-	assertEquals("Saint-Pierre-des-Corps", result.getCity());
+        assertEquals((Integer) 1, result.getId());
+        assertEquals("2", result.getNumber());
+        assertEquals("Place de la Gare", result.getStreet());
+        assertEquals("37700", result.getPostcode());
+        assertEquals("Saint-Pierre-des-Corps", result.getCity());
     }
 
     @Test
     public void it_should_return_existing_address() throws NoAddressRetrievedException {
 
-	when(addressRepository.findByNumberAndStreetAndPostcodeAndCity(
-		addressExample.getNumber(),
-		addressExample.getStreet(),
-		addressExample.getPostcode(),
-		addressExample.getCity())).thenReturn(addressExample);
+        when(
+                addressRepository.findByNumberAndStreetAndPostcodeAndCity(
+                        addressExample.getNumber(),
+                        addressExample.getStreet(),
+                        addressExample.getPostcode(),
+                        addressExample.getCity())).thenReturn(addressExample);
 
-	Address result = addressService.createAddressIfNotExists(addressExample);
+        Address result = addressService.createAddressIfNotExists(addressExample);
 
-	assertEquals("2", result.getNumber());
-	assertEquals("Place de la Gare", result.getStreet());
-	assertEquals("37700", result.getPostcode());
-	assertEquals("Saint-Pierre-des-Corps", result.getCity());
+        assertEquals("2", result.getNumber());
+        assertEquals("Place de la Gare", result.getStreet());
+        assertEquals("37700", result.getPostcode());
+        assertEquals("Saint-Pierre-des-Corps", result.getCity());
     }
 
-    @Test(expected=NoAddressRetrievedException.class)
+    @Test(expected = NoAddressRetrievedException.class)
     public void it_should_fail_with_wrong_address() throws NoAddressRetrievedException {
 
-	Address addressInvalid = new Address();
-	addressInvalid.setNumber("470");
-	addressInvalid.setStreet("rue de Tintagel");
-	addressInvalid.setPostcode("37000");
-	addressInvalid.setCity("Logres");
+        Address addressInvalid = new Address();
+        addressInvalid.setNumber("470");
+        addressInvalid.setStreet("rue de Tintagel");
+        addressInvalid.setPostcode("37000");
+        addressInvalid.setCity("Logres");
 
-	when(addressRepository.findByNumberAndStreetAndPostcodeAndCity(
-		addressInvalid.getNumber(),
-		addressInvalid.getStreet(),
-		addressInvalid.getPostcode(),
-		addressInvalid.getCity())).thenReturn(null);
-	when(addressDataGouvService.searchAddress(ArgumentMatchers.any()))
-		.thenThrow(new NoAddressRetrievedException("Adresse inconnue"));
+        when(
+                addressRepository.findByNumberAndStreetAndPostcodeAndCity(
+                        addressInvalid.getNumber(),
+                        addressInvalid.getStreet(),
+                        addressInvalid.getPostcode(),
+                        addressInvalid.getCity())).thenReturn(null);
+        when(addressDataGouvService.searchAddress(ArgumentMatchers.any()))
+        .thenThrow(new NoAddressRetrievedException("Adresse inconnue"));
 
-	Address result = addressService.createAddressIfNotExists(addressInvalid);
+        Address result = addressService.createAddressIfNotExists(addressInvalid);
 
-	fail("should fail");
+        fail("should fail");
     }
 
 }

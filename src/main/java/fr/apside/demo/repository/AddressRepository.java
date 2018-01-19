@@ -6,5 +6,5 @@ import fr.apside.demo.domain.Address;
 
 public interface AddressRepository extends CrudRepository<Address, Integer> {
 
-	public Address findByNumberAndStreetAndPostcodeAndCity(String number, String street, String postcode, String city);
+    public Address findByNumberAndStreetAndPostcodeAndCity(String number, String street, String postcode, String city);
 }

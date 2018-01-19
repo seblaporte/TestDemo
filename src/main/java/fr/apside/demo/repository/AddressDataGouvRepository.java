@@ -13,14 +13,14 @@ import fr.apside.demo.domain.datagouv.SearchResponse;
 @Repository
 public class AddressDataGouvRepository {
 
-	public SearchResponse search(String url, String searchAddress) {
-		
-		Client client = ClientBuilder.newClient();
-		
-		WebTarget searchTarget = client.target(url).queryParam("q", searchAddress);
+    public SearchResponse search(String url, String searchAddress) {
 
-		Invocation.Builder invocationBuilder = searchTarget.request(MediaType.APPLICATION_JSON);
-		
-		return invocationBuilder.get(SearchResponse.class);
-	}
+        Client client = ClientBuilder.newClient();
+
+        WebTarget searchTarget = client.target(url).queryParam("q", searchAddress);
+
+        Invocation.Builder invocationBuilder = searchTarget.request(MediaType.APPLICATION_JSON);
+
+        return invocationBuilder.get(SearchResponse.class);
+    }
 }

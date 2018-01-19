@@ -15,42 +15,42 @@ import fr.apside.demo.domain.User;
 @SpringBootTest
 public class UserRepositoryTestIt {
 
-	@Autowired
-	UserRepository userRepository;
+    @Autowired
+    UserRepository userRepository;
 
-	@Autowired
-	AddressRepository addressRepository;
+    @Autowired
+    AddressRepository addressRepository;
 
-	@Test
-	public void it_should_find_user() {
+    @Test
+    public void it_should_find_user() {
 
-		User user = createUserExample();
+        User user = createUserExample();
 
-		addressRepository.save(user.getAddress());
-		userRepository.save(user);
+        addressRepository.save(user.getAddress());
+        userRepository.save(user);
 
-		User foundUser = userRepository.findByEmail(user.getEmail());
+        User foundUser = userRepository.findByEmail(user.getEmail());
 
-		assertEquals(user.getName(), foundUser.getName());
-		assertEquals(user.getSurname(), foundUser.getSurname());
-		assertEquals(user.getEmail(), foundUser.getEmail());
-		assertEquals(user.getAddress().getNumber(), foundUser.getAddress().getNumber());
-	}
+        assertEquals(user.getName(), foundUser.getName());
+        assertEquals(user.getSurname(), foundUser.getSurname());
+        assertEquals(user.getEmail(), foundUser.getEmail());
+        assertEquals(user.getAddress().getNumber(), foundUser.getAddress().getNumber());
+    }
 
-	private User createUserExample() {
+    private User createUserExample() {
 
-		Address address = new Address();
-		address.setNumber("2");
-		address.setStreet("Place de la Gare");
-		address.setPostcode("37700");
-		address.setCity("Saint-Pierre-des-Corps");
+        Address address = new Address();
+        address.setNumber("2");
+        address.setStreet("Place de la Gare");
+        address.setPostcode("37700");
+        address.setCity("Saint-Pierre-des-Corps");
 
-		User user = new User();
-		user.setName("Laporte");
-		user.setSurname("Sébastien");
-		user.setEmail("laporte.0209@apside-groupe.com");
-		user.setAddress(address);
+        User user = new User();
+        user.setName("Laporte");
+        user.setSurname("Sébastien");
+        user.setEmail("laporte.0209@apside-groupe.com");
+        user.setAddress(address);
 
-		return user;
-	}
+        return user;
+    }
 }

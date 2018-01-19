@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 public class Address {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @NotNull(message = "La ville est obligatoire")
@@ -26,43 +26,43 @@ public class Address {
     private String postcode;
 
     public Integer getId() {
-	return id;
+        return id;
     }
 
     public void setId(Integer id) {
-	this.id = id;
+        this.id = id;
     }
 
     public String getCity() {
-	return city;
+        return city;
     }
 
     public void setCity(String city) {
-	this.city = city;
+        this.city = city;
     }
 
     public String getStreet() {
-	return street;
+        return street;
     }
 
     public void setStreet(String street) {
-	this.street = street;
+        this.street = street;
     }
 
     public String getNumber() {
-	return number;
+        return number;
     }
 
     public void setNumber(String number) {
-	this.number = number;
+        this.number = number;
     }
 
     public String getPostcode() {
-	return postcode;
+        return postcode;
     }
 
     public void setPostcode(String postcode) {
-	this.postcode = postcode;
+        this.postcode = postcode;
     }
 
 }

@@ -9,9 +9,9 @@ import fr.apside.demo.web.dto.UserDto;
 @Mapper
 public interface UserMapper {
 
-	UserMapper instance = Mappers.getMapper(UserMapper.class);
-	
-	UserDto userToUserDto(User user);
-	
-	User userDtoToUser(UserDto userDto);
+    UserMapper instance = Mappers.getMapper(UserMapper.class);
+
+    UserDto userToUserDto(User user);
+
+    User userDtoToUser(UserDto userDto);
 }
