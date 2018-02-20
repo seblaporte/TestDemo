@@ -1,5 +1,8 @@
 version: '2'
 
+volumes:
+  mysql-data:
+
 services:
 
   mysql:
@@ -12,4 +15,4 @@ services:
       - MYSQL_PASSWORD=P@ssw0rd!
       - MYSQL_DATABASE=tests_demo
     volumes:
-      - ./data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql

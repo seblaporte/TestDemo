@@ -64,4 +64,18 @@ public class UserResourceTestIT {
         ResponseEntity<UserDto> response = testRestTemplate.getForEntity("/user/2", UserDto.class);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
     }
+
+    @Test
+    public void testUserResource() {
+
+        ResponseEntity<UserDto> response;
+
+        // Cas fonctionnel 1
+        response = testRestTemplate.getForEntity("/user/1", UserDto.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        // Cas fonctionnel 2
+        response = testRestTemplate.getForEntity("/user/2", UserDto.class);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NO_CONTENT);
+    }
 }
