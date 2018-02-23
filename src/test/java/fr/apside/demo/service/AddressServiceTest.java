@@ -52,6 +52,43 @@ public class AddressServiceTest {
     }
 
     @Test
+    public void anti_pattern() throws NoAddressRetrievedException {
+    	// Creation
+    	when(
+                addressRepository.findByNumberAndStreetAndPostcodeAndCity(
+                        addressExample.getNumber(),
+                        addressExample.getStreet(),
+                        addressExample.getPostcode(),
+                        addressExample.getCity())).thenReturn(null);
+        when(addressDataGouvService.searchAddress(searchAddress)).thenReturn(addressExample);
+        addressExample.setId(1);
+        when(addressRepository.save(addressExample)).thenReturn(addressExample);
+
+        Address result = addressService.createAddressIfNotExists(addressExample);
+
+        assertEquals((Integer) 1, result.getId());
+        assertEquals("2", result.getNumber());
+        assertEquals("Place de la Gare", result.getStreet());
+        assertEquals("37700", result.getPostcode());
+        assertEquals("Saint-Pierre-des-Corps", result.getCity());
+
+        // Modification
+        when( 
+                addressRepository.findByNumberAndStreetAndPostcodeAndCity(
+                        addressExample.getNumber(),
+                        addressExample.getStreet(),
+                        addressExample.getPostcode(),
+                        addressExample.getCity())).thenReturn(addressExample);
+
+        result = addressService.createAddressIfNotExists(addressExample);
+
+        assertEquals("2", result.getNumber());
+        assertEquals("Place de la Gare", result.getStreet());
+        assertEquals("37700", result.getPostcode());
+        assertEquals("Saint-Pierre-des-Corps", result.getCity());
+    }
+
+    @Test
     public void it_should_return_created_address() throws NoAddressRetrievedException {
 
         when(
@@ -107,7 +144,7 @@ public class AddressServiceTest {
                         addressInvalid.getPostcode(),
                         addressInvalid.getCity())).thenReturn(null);
         when(addressDataGouvService.searchAddress(ArgumentMatchers.any()))
-        .thenThrow(new NoAddressRetrievedException("Adresse inconnue"));
+        	.thenThrow(new NoAddressRetrievedException("Adresse inconnue"));
 
         Address result = addressService.createAddressIfNotExists(addressInvalid);
 
