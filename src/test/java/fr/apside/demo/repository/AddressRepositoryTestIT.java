@@ -21,7 +21,6 @@ public class AddressRepositoryTestIT {
     public void it_should_find_address() {
 
         Address address = createAddressExample();
-
         addressRepository.save(address);
 
         Address foundAddress = addressRepository.findByNumberAndStreetAndPostcodeAndCity(

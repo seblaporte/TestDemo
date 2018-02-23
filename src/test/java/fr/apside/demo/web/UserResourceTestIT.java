@@ -66,6 +66,7 @@ public class UserResourceTestIT {
     }
 
     @Test
+    // Anti-pattern : Plusieurs cas fonctionnels sur 1 test
     public void testUserResource() {
 
         ResponseEntity<UserDto> response;

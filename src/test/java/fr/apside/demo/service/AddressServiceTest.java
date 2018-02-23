@@ -53,8 +53,8 @@ public class AddressServiceTest {
 
     @Test
     public void anti_pattern() throws NoAddressRetrievedException {
-    	// Creation
-    	when(
+        // Creation
+        when(
                 addressRepository.findByNumberAndStreetAndPostcodeAndCity(
                         addressExample.getNumber(),
                         addressExample.getStreet(),
@@ -73,7 +73,7 @@ public class AddressServiceTest {
         assertEquals("Saint-Pierre-des-Corps", result.getCity());
 
         // Modification
-        when( 
+        when(
                 addressRepository.findByNumberAndStreetAndPostcodeAndCity(
                         addressExample.getNumber(),
                         addressExample.getStreet(),
@@ -144,9 +144,9 @@ public class AddressServiceTest {
                         addressInvalid.getPostcode(),
                         addressInvalid.getCity())).thenReturn(null);
         when(addressDataGouvService.searchAddress(ArgumentMatchers.any()))
-        	.thenThrow(new NoAddressRetrievedException("Adresse inconnue"));
+        .thenThrow(new NoAddressRetrievedException("Adresse inconnue"));
 
-        Address result = addressService.createAddressIfNotExists(addressInvalid);
+        addressService.createAddressIfNotExists(addressInvalid);
 
         fail("should fail");
     }
