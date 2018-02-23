@@ -13,7 +13,7 @@ import fr.apside.demo.domain.User;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserRepositoryTestIt {
+public class UserRepositoryTestIT {
 
     @Autowired
     UserRepository userRepository;

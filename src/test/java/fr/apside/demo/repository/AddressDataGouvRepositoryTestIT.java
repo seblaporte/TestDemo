@@ -8,7 +8,7 @@ import org.junit.Test;
 import fr.apside.demo.domain.datagouv.Properties;
 import fr.apside.demo.domain.datagouv.SearchResponse;
 
-public class AddressDataGouvRepositoryTestIt {
+public class AddressDataGouvRepositoryTestIT {
 
     @Test
     public void it_should_return_address() {

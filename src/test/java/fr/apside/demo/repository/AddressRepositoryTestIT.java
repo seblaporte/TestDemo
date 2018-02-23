@@ -12,7 +12,7 @@ import fr.apside.demo.domain.Address;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AddressRepositoryTestIt {
+public class AddressRepositoryTestIT {
 
     @Autowired
     AddressRepository addressRepository;
