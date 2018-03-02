@@ -7,16 +7,12 @@ import fr.apside.demo.domain.datagouv.SearchResponse;
 
 public class AddressUtils {
 
-    private AddressUtils() {
-
-    }
-
     public static Properties getPropertiesWithBestScoreFromSearchResponse(SearchResponse searchResponse) {
 
         Properties properties = new Properties();
         double highestScore = 0L;
 
-        if (searchResponse.getFeatures() != null) {
+        if (searchResponse != null && searchResponse.getFeatures() != null) {
             for (Feature feature : searchResponse.getFeatures()) {
                 if (feature.getProperties() != null && feature.getProperties().getScore() > highestScore) {
                     highestScore = feature.getProperties().getScore();

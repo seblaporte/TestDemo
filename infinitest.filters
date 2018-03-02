@@ -1,0 +1,5 @@
+fr\.apside\.demo\.service\.*
+
+fr\.apside\.demo\.repository\.*
+
+fr\.apside\.demo\.web\.*
