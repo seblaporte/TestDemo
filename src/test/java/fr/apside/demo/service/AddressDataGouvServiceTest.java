@@ -27,12 +27,13 @@ public class AddressDataGouvServiceTest {
     @Test(expected = NoAddressRetrievedException.class)
     public void it_should_not_find_address() throws NoAddressRetrievedException {
 
-        SearchResponse searchResponse = new SearchResponse();
-        searchResponse.setFeatures(null);
+        SearchResponse emptySearchResponse = new SearchResponse();
+        emptySearchResponse.setFeatures(null);
+        when(addressDataGouvRepository.search(Mockito.anyString(), Mockito.anyString())).thenReturn(emptySearchResponse);
 
-        when(addressDataGouvRepository.search(Mockito.anyString(), Mockito.anyString())).thenReturn(searchResponse);
+        String badAddress = "Adresse incorrecte";
 
-        addressDataGouvService.searchAddress("Adresse incorrecte");
+        addressDataGouvService.searchAddress(badAddress);
     }
 
 }

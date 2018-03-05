@@ -67,6 +67,7 @@ public class UserServiceTest {
         when(userRepository.save(ArgumentMatchers.any(User.class))).thenReturn(new User());
 
         User userCreated = userService.createUserIfNotExists(user);
+
         assertNotNull(userCreated);
     }
 }
