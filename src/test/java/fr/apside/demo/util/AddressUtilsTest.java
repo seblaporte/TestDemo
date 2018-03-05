@@ -1,7 +1,8 @@
 package fr.apside.demo.util;
 
-import static org.junit.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import fr.apside.demo.domain.Address;
@@ -11,58 +12,48 @@ import fr.apside.demo.domain.datagouv.SearchResponse;
 
 public class AddressUtilsTest {
 
-    @Test
-    public void should_return_properties_from_searchResponse_with_highest_score() {
+    private SearchResponse searchResponseWithOneResult;
 
-        SearchResponse searchResponse = createSearchResponseExampleWithTwoResults();
+    @Before
+    public void init() {
 
-        Properties result = AddressUtils.getPropertiesWithBestScoreFromSearchResponse(searchResponse);
-
-        assertEquals("Saint-Pierre-des-Corps", result.getCity());
+        // Une reponse
+        searchResponseWithOneResult = new SearchResponse();
+        Feature features[] = { new Feature() };
+        // Reponse unique
+        Properties properties = new Properties();
+        properties.setHousenumber("3");
+        properties.setStreet("Rue des Minimes");
+        properties.setPostcode("37000");
+        properties.setCity("Tours");
+        properties.setScore(0.95d);
+        // Array
+        features[0].setProperties(properties);
+        searchResponseWithOneResult.setFeatures(features);
     }
 
     @Test
     public void should_return_address_from_properties() {
 
-        Properties properties = createPropertiesExample();
+        Properties properties = searchResponseWithOneResult.getFeatures()[0].getProperties();
 
         Address result = AddressUtils.getAddressFromProperties(properties);
 
-        assertEquals("2", result.getNumber());
-        assertEquals("Place de la Gare", result.getStreet());
-        assertEquals("37700", result.getPostcode());
-        assertEquals("Saint-Pierre-des-Corps", result.getCity());
+        assertThat(result.getNumber()).isEqualTo("3");
+        assertThat(result.getStreet()).isEqualTo("Rue des Minimes");
+        assertThat(result.getPostcode()).isEqualTo("37000");
+        assertThat(result.getCity()).isEqualTo("Tours");
     }
 
-    private Properties createPropertiesExample() {
-        return createSearchResponseExampleWithTwoResults().getFeatures()[0].getProperties();
-    }
+    @Test
+    public void should_return_inline_address() {
+        Address addressExample = new Address();
+        addressExample.setNumber("2");
+        addressExample.setStreet("Place de la Gare");
+        addressExample.setPostcode("37700");
+        addressExample.setCity("Saint-Pierre-des-Corps");
 
-    private SearchResponse createSearchResponseExampleWithTwoResults() {
-
-        SearchResponse searchResponse = new SearchResponse();
-
-        Feature features[] = { new Feature(), new Feature() };
-
-        Properties propertiesOne = new Properties();
-        propertiesOne.setHousenumber("2");
-        propertiesOne.setStreet("Place de la Gare");
-        propertiesOne.setPostcode("37700");
-        propertiesOne.setCity("Saint-Pierre-des-Corps");
-        propertiesOne.setScore(0.9);
-
-        Properties propertiesTwo = new Properties();
-        propertiesTwo.setHousenumber("2");
-        propertiesTwo.setStreet("Avenue de Paris");
-        propertiesTwo.setPostcode("45000");
-        propertiesTwo.setCity("Orléans");
-        propertiesTwo.setScore(0.8);
-
-        features[0].setProperties(propertiesOne);
-        features[1].setProperties(propertiesTwo);
-
-        searchResponse.setFeatures(features);
-
-        return searchResponse;
+        assertThat(AddressUtils.createInlineAddressFromObject(addressExample))
+                .isEqualTo("2 Place de la Gare 37700 Saint-Pierre-des-Corps");
     }
 }

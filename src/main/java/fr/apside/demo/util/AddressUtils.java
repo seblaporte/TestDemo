@@ -7,19 +7,17 @@ import fr.apside.demo.domain.datagouv.SearchResponse;
 
 public class AddressUtils {
 
-    private AddressUtils() {
-
-    }
-
     public static Properties getPropertiesWithBestScoreFromSearchResponse(SearchResponse searchResponse) {
 
         Properties properties = new Properties();
         double highestScore = 0L;
 
-        for (Feature feature : searchResponse.getFeatures()) {
-            if (feature.getProperties() != null && feature.getProperties().getScore() > highestScore) {
-                highestScore = feature.getProperties().getScore();
-                properties = feature.getProperties();
+        if (searchResponse != null && searchResponse.getFeatures() != null) {
+            for (Feature feature : searchResponse.getFeatures()) {
+                if (feature.getProperties() != null && feature.getProperties().getScore() > highestScore) {
+                    highestScore = feature.getProperties().getScore();
+                    properties = feature.getProperties();
+                }
             }
         }
 
@@ -41,9 +39,9 @@ public class AddressUtils {
     public static String createInlineAddressFromObject(Address address) {
         return String.format(
                 "%s %s %s %s",
-                address.getNumber(),
-                address.getStreet(),
-                address.getPostcode(),
-                address.getCity());
+                    address.getNumber(),
+                    address.getStreet(),
+                    address.getPostcode(),
+                    address.getCity());
     }
 }

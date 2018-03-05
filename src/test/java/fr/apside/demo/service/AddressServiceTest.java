@@ -72,7 +72,7 @@ public class AddressServiceTest {
         assertEquals("37700", result.getPostcode());
         assertEquals("Saint-Pierre-des-Corps", result.getCity());
 
-        // Modification
+        // Recuperation existant
         when(
                 addressRepository.findByNumberAndStreetAndPostcodeAndCity(
                         addressExample.getNumber(),
