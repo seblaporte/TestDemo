@@ -19,7 +19,7 @@ import fr.apside.demo.repository.AddressDataGouvRepository;
 public class AddressDataGouvServiceTest {
 
     @InjectMocks
-    AddressDataGouvService addressDataGouvService;
+    AddressDataGouvService    addressDataGouvService;
 
     @Mock
     AddressDataGouvRepository addressDataGouvRepository;
@@ -29,7 +29,9 @@ public class AddressDataGouvServiceTest {
 
         SearchResponse emptySearchResponse = new SearchResponse();
         emptySearchResponse.setFeatures(null);
-        when(addressDataGouvRepository.search(Mockito.anyString(), Mockito.anyString())).thenReturn(emptySearchResponse);
+
+        when(addressDataGouvRepository.search(Mockito.anyString(), Mockito.anyString()))
+                .thenReturn(emptySearchResponse);
 
         String badAddress = "Adresse incorrecte";
 

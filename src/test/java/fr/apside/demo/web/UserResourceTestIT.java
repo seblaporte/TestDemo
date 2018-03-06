@@ -27,25 +27,25 @@ public class UserResourceTestIT {
     private TestRestTemplate testRestTemplate;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository   userRepository;
 
     @Autowired
-    AddressRepository addressRepository;
+    AddressRepository        addressRepository;
 
     @Before
     public void init() {
 
         User user = new User();
         Address address = new Address();
+        user.setId(1);
+        user.setEmail("laporte.0209@apside-groupe.com");
+        user.setName("Laporte");
+        user.setSurname("Sébastien");
         address.setNumber("2");
         address.setStreet("Place de la Gare");
         address.setPostcode("37700");
         address.setCity("Saint-Pierre-des-Corps");
         user.setAddress(address);
-        user.setId(1);
-        user.setEmail("laporte.0209@apside-groupe.com");
-        user.setName("Laporte");
-        user.setSurname("Sébastien");
 
         addressRepository.save(address);
         userRepository.save(user);
